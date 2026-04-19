@@ -1,14 +1,26 @@
 from flask import Flask, render_template, request
 import joblib
 from preprocess import preprocess_pipeline
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder='templates',
+            static_folder='static')
 
-# Load model and vectorizer
-print("Loading model and vectorizer...")
-model = joblib.load('model/model.pkl')
-vectorizer = joblib.load('model/vectorizer.pkl')
-print("Model loaded successfully!")
+# Load model and vectorizer only once
+def load_model():
+    """Load ML model and vectorizer"""
+    model_path = os.path.join(os.path.dirname(__file__), 'model', 'model.pkl')
+    vectorizer_path = os.path.join(os.path.dirname(__file__), 'model', 'vectorizer.pkl')
+    
+    print("Loading model and vectorizer...")
+    model = joblib.load(model_path)
+    vectorizer = joblib.load(vectorizer_path)
+    print("Model loaded successfully!")
+    return model, vectorizer
+
+# Load models at startup
+model, vectorizer = load_model()
 
 @app.route('/')
 def home():

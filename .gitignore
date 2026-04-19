@@ -59,3 +59,6 @@ data/emails.csv
 
 # Logs
 *.log
+
+# Vercel
+.vercel
