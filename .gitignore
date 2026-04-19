@@ -47,8 +47,8 @@ instance/
 # model/model.pkl
 # model/vectorizer.pkl
 
-# Data files (optional - you may want to include these)
-# data/
+# Data files (large datasets)
+data/emails.csv
 
 # Jupyter Notebook
 .ipynb_checkpoints
