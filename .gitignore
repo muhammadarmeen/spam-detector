@@ -62,3 +62,6 @@ data/emails.csv
 
 # Vercel
 .vercel
+
+# Streamlit
+.streamlit/config.toml
